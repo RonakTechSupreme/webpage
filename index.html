@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Message</title>
+    <style>
+        /* Basic body styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            text-align: center;
+            background-color: #f4f4f9;
+            overflow-x: hidden;
+        }
+
+        /* Create a pseudo-element to handle the background blur */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('dotted-pink-aesthetic-heart-pattern-8mibinhf5ghegngi.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            filter: blur(8px); /* Blurring the background */
+            z-index: -1;
+        }
+
+        /* Landing Page Styling */
+        #landing-page {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #000; /* Black background */
+            color: #fff;
+        }
+
+        #landing-page h1 {
+            font-size: 48px;
+            font-weight: bold;
+            margin: 20px;
+            text-shadow: 0 0 15px #ff00ff, 0 0 30px #ff00ff, 0 0 45px #00ffcc;
+        }
+
+        #landing-page img {
+            width: 300px; /* Adjust the image size */
+            height: auto;
+            margin: 20px;
+            border-radius: 10px;
+            border: 5px solid #fff;
+        }
+
+        #landing-page button {
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #ff00ff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        #landing-page button:hover {
+            transform: scale(1.1);
+        }
+
+        /* Center the text elements */
+        h1, .memories {
+            font-size: 36px;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 
+                0 0 5px #00ffcc, 
+                0 0 10px #00ffcc, 
+                0 0 15px #00ffcc, 
+                0 0 20px #00ccff, 
+                0 0 30px #00ccff, 
+                0 0 40px #ff00ff, 
+                0 0 50px #ff00ff, 
+                0 0 75px #ff00ff;
+            margin-bottom: 20px;
+            z-index: 1;
+        }
+
+        .memories {
+            font-size: 24px;
+            margin-top: 10px;
+        }
+
+        /* Feedback box styling */
+        .feedback-container {
+            margin: 40px auto;
+            padding: 20px;
+            max-width: 500px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .feedback-container input,
+        .feedback-container textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .feedback-container button {
+            padding: 10px 20px;
+            background-color: #00ffcc;
+            color: #fff;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .feedback-container button:hover {
+            transform: scale(1.1);
+        }
+
+        /* Slider Section */
+        #slider {
+            max-width: 600px;
+            margin: 20px auto;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            z-index: 1;
+        }
+
+        .slide {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+        }
+
+        .active {
+            opacity: 1;
+            transform: translateX(0);
+            position: relative;
+        }
+
+        /* Message Section */
+        .message {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            max-width: 600px;
+            text-align: left;
+            margin-top: 40px;
+            font-size: 18px;
+            color: #333;
+            position: relative;
+            z-index: 1;
+        }
+
+        .message p {
+            margin: 15px 0;
+        }
+
+        .message p:first-child {
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            h1 {
+                font-size: 32px;
+            }
+
+            .memories {
+                font-size: 24px;
+            }
+
+            .message {
+                font-size: 16px;
+            }
+
+            #slider {
+                max-width: 90%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 28px;
+            }
+
+            .memories {
+                font-size: 22px;
+            }
+
+            .message {
+                font-size: 14px;
+            }
+
+            #slider {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 24px;
+            }
+
+            .memories {
+                font-size: 20px;
+            }
+
+            .message {
+                font-size: 12px;
+                padding: 15px;
+            }
+
+            #slider {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Landing Page -->
+    <div id="landing-page">
+        <h1>Welcome Everyone</h1>
+        <img src="IMG_20170301_134249.jpg" alt="Santosh Kumar Mishra">
+        <button id="next-button">Next</button>
+    </div>
+
+    <!-- Audio -->
+    <audio id="background-audio" src="your-audio-file.mp3" preload="auto"></audio> <!-- Replace with your audio file -->
+
+    <!-- Main Page -->
+    <div id="main-page" style="display:none;">
+
+        <h1>Happy Birthday Dadai ❤️</h1>
+
+        <!-- Our Memories Section -->
+        <div class="memories">
+            Our Memories
+        </div>
+
+        <!-- Slider -->
+        <div id="slider">
+            <img class="slide active" src="20190203_081453.jpg" alt="Image 1">
+            <img class="slide" src="20190203_081425.jpg" alt="Image 2">
+            <img class="slide" src="DSCN0040.JPG" alt="Image 3">
+            <img class="slide" src="DSCN0052.JPG" alt="Image 4">
+            <img class="slide" src="WP_20150701_014.jpg" alt="Image 5">
+        </div>
+
+        <!-- Message -->
+        <div class="message">
+            <p>Dear Dadai,</p>
+            <p>Wishing you a very Happy Birthday! 🎂</p>
+            <p>You have always been an inspiration to me, teaching me the value of life and guiding me with your wisdom. 🌟</p>
+            <p>Thank you for always being a guiding light. 💡</p>
+            <p>I am truly grateful for everything you do for us. 🙏</p>
+            <p>May your day be filled with joy and good health, and may you always remain happy and blessed. 🙏🎉</p>
+        </div>
+
+        <!-- Feedback Box -->
+        <div class="feedback-container">
+            <h3>Your Feedback</h3>
+            <form action="https://formsubmit.co/your-email" method="POST">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <textarea name="message" placeholder="Good and Bad parts of the website" required></textarea>
+                <button type="submit">Submit Feedback</button>
+            </form>
+        </div>
+
+    </div>
+
+    <script>
+        // Landing Page to Main Page Transition
+        document.getElementById('next-button').addEventListener('click', function() {
+            document.getElementById('landing-page').style.display = 'none';
+            document.getElementById('main-page').style.display = 'block';
+            document.getElementById('background-audio').play(); // Play the audio when the next button is clicked
+        });
+
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function changeSlide(direction) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + direction + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        setInterval(() => {
+            changeSlide(1);
+        }, 3000);
+    </script>
+
+</body>
+</html>
